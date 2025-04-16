@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday, My Love</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100%;
+      background: url('https://source.unsplash.com/1600x900/?love,romantic') no-repeat center center fixed;
+      background-size: cover;
+      color:whitesmoke;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .overlay {
+      background: rgba(177, 15, 131, 0.6);
+      padding: 2rem;
+      border-radius: 20px;
+      max-width: 800px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+
+    .heart {
+      font-size: 2.5rem;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .gallery img {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #fff;
+    }
+
+    .btn {
+      background: #ffb6c1;
+      color: #e31017;
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: #ff69b4;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="heart">❤️</div>
+    <h1>Happy Birthday, My Pasandida Auraat!</h1>
+    <p>Har pal tumhari muskurahat mein meri khushi hai.<br>
+    Tum meri zindagi ki sabse khoobsurat nazm ho.<br>
+    Aaj ke din sirf tumhari khushi ke liye dua karta hoon ❤️</p>
+    <button class="btn" onclick="alert('happy birthday my forever 💕')">Click for Surprise</button>
+
+    <div class="gallery">
+      <img src="dnyanu1.jpg"alt="Memory 1">
+      <img src="dnyanu2.jpg" alt="Memory 2">
+      <img src="dnyanu3.jpg" alt="Memory 3">
+      <img src="dnyanu4.jpg" alt="Memory 4">
+      
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, My Life</title>
+  <style>
+    /* Global Styles */
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Cursive', sans-serif;
+      text-align: center;
+      background: linear-gradient(to right, #ff66b2, #ff3399, #cc0066);
+      color: white;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1001;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      transition: color 0.3s;
+    }
+    nav ul li a:hover {
+      color: #ffccdd;
+    }
+    /* Main Container */
+    .container {
+      padding: 100px 20px 50px;
+      margin-top: 60px; /* Prevents content from hiding behind nav */
+    }
+    h1 {
+      font-size: 40px;
+      text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.7);
+      animation: fadeIn 2s ease-in;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      animation: fadeIn 3s ease-in;
+    }
+    /* Image Gallery */
+    .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .image-gallery img {
+      width: 200px;
+      height: auto;
+      margin: 10px;
+      border-radius: 20px;
+      box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.5);
+      transition: 0.5s ease-in-out;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.1);
+    }
+    /* Buttons & Controls */
+    button {
+      padding: 12px 24px;
+      font-size: 20px;
+      border: none;
+      background-color: #ff0044;
+      color: white;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: 0.3s ease-in-out;
+      animation: fadeIn 4s ease-in;
+      margin: 10px;
+    }
+    button:hover {
+      background-color: #990033;
+      transform: scale(1.1);
+    }
+    input[type="range"] {
+      vertical-align: middle;
+      margin: 0 10px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Floating Hearts */
+    .heart {
+      position: absolute;
+      font-size: 25px;
+      color: #ffcccc;
+      animation: floatUp 6s infinite ease-in-out;
+    }
+    @keyframes floatUp {
+      from {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+    /* Floating Balloons */
+    .balloon {
+      position: absolute;
+      font-size: 30px;
+      opacity: 0.9;
+      animation: balloonFloat 8s ease-in-out infinite;
+    }
+    @keyframes balloonFloat {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      50% { transform: translateY(-50vh) scale(1.2); opacity: 0.8; }
+      100% { transform: translateY(-100vh) scale(1); opacity: 0; }
+    }
+    /* Modal Styling for Love Note */
+    .modal {
+      display: none; 
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal-content {
+      background-color: #ffe6f0;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #ff99cc;
+      width: 80%;
+      max-width: 600px;
+      color: #cc0066;
+      border-radius: 20px;
+      text-align: left;
+      position: relative;
+      font-family: 'Cursive', sans-serif;
+      animation: fadeIn 1s ease-in;
+    }
+    .close {
+      color: #cc0066;
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 28px;
+      cursor: pointer;
+    }
+    /* Typewriter Text Effect */
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid #cc0066;
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: .15em;
+      animation: typing 4s steps(40, end), blink-caret .75s step-end infinite;
+      font-size: 22px;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #cc0066; }
+    }
+    /* Confetti Style */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: 0.9;
+      pointer-events: none;
+      animation: confetti-fall 3s linear forwards;
+    }
+    @keyframes confetti-fall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    /* Timeline Section */
+    .timeline {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      margin: 50px auto;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 800px;
+      animation: fadeIn 2s ease-in;
+    }
+    .timeline h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #ffccdd;
+    }
+    .timeline-item {
+      margin-bottom: 20px;
+      text-align: left;
+      padding: 10px;
+      border-left: 3px solid #ff99cc;
+    }
+    .timeline-item h3 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+    .timeline-item p {
+      font-size: 16px;
+      margin: 0;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      color: #fff;
+      font-size: 16px;
+      z-index: 1001;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#loveModal" onclick="openLoveNote()">Love Note</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container" id="home">
+    <h1>Happy Birthday, Dnyanda ! 🎉</h1>
+    <p>You are the light of my life, the reason behind my happiest moments. Today, we celebrate not just your birthday but the beautiful journey of our love.</p>
+    
+    <div class="image-gallery" id="gallery">
+      <img src="/IMG-20250308-WA0003.jpg" alt="Birthday Image 1">
+      <img src="/IMG-20250308-WA0004.jpg" alt="Birthday Image 2">
+      <img src="/Snapchat-389691309.jpg" alt="Birthday Image 3">
+      <img src="/Snapchat-1170737208.jpg" alt="Birthday Image 4">
+      <img src="/Snapchat-679995361.jpg" alt="Birthday Image 5">
+      <img src="/IMG-20250316-WA0007.jpg" alt="Birthday Image 6">
+      <img src="/IMG-20250308-WA0005.jpg" alt="Birthday Image 7">
+    </div>
+
+    <!-- Audio Controls for Two Separate Audio Streams -->
+    <div>
+      <button id="audio1Control">Play Audio 1 🎶</button>
+      <label for="volume1">Volume:</label>
+      <input type="range" id="volume1" min="0" max="1" step="0.1" value="1">
+    </div>
+    <div>
+      <button id="audio2Control">Play Audio 2 🎶</button>
+      <label for="volume2">Volume:</label>
+      <input type="range" id="volume2" min="0" max="1" step="0.1" value="1">
+    </div>
+    <br>
+    <button onclick="openLoveNote()">Open Love Note 💌</button>
+
+    <!-- Audio Elements -->
+    <audio id="song1" src="/WhatsApp Audio 2025-04-09 at 4.11.15 PM.mpeg.wav"></audio>
+    <audio id="song2" src="/WhatsApp Audio 2025-04-09 at 4.13.18 PM.mpeg.wav"></audio>
+    <!-- Surprise Audio for Love Note -->
+    <audio id="surpriseAudio" src="/videoplayback.m4a" preload="auto"></audio>
+
+    <!-- Timeline Section -->
+    <div class="timeline" id="timeline">
+      <h2>Our Love Timeline</h2>
+      <div class="timeline-item">
+        <h3>Our First Smile</h3>
+        <p>Remember the first time we exchanged smiles? It changed everything.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Our First Date</h3>
+        <p>That magical day when we realized destiny had a plan for us.</p>
+      </div>
+      <div class="timeline-item">
+        <h3>Many Beautiful Moments</h3>
+        <p>Every shared laugh, every tear, and every hug has woven the fabric of our story.</p>
+      </div>
+    </div>
+
+    <!-- Love Note Modal -->
+    <div id="loveModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeLoveNote()">&times;</span>
+        <div class="typewriter" id="loveNoteText"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Made with ❤️ exclusively for you.</p>
+  </footer>
+
+  <!-- JavaScript: Animation, Modal & Audio Control -->
+  <script>
+    // Global Variables for Modal Effects
+    let heartsInterval, balloonsInterval, typingTimer;
+    const loveMessage = "Every beat of my heart sings a melody of love for you. Your smile is my sunshine and your presence, my universe.";
+    let typingIndex = 0;
+
+    // Animation Functions: Floating Hearts, Balloons and a One-Off Confetti Burst
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.innerHTML = "❤️";
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 6000);
+    }
+
+    function createBalloon() {
+      const balloon = document.createElement("div");
+      balloon.innerHTML = "🎈";
+      balloon.classList.add("balloon");
+      balloon.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(balloon);
+      setTimeout(() => { balloon.remove(); }, 8000);
+    }
+
+    function createConfetti() {
+      const confettiCount = 30;
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.animationDuration = (2 + Math.random() * 3) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => { confetti.remove(); }, 5000);
+      }
+    }
+
+    // Typewriter Effect for the Love Note
+    function typeWriter() {
+      if (typingIndex < loveMessage.length) {
+        document.getElementById("loveNoteText").innerHTML += loveMessage.charAt(typingIndex);
+        typingIndex++;
+        typingTimer = setTimeout(typeWriter, 100);
+      } else {
+        typingIndex = 0;  // Reset if you wish to allow reiteration when reopened
+      }
+    }
+
+    // Modal Control Functions
+    function openLoveNote() {
+      document.getElementById("loveModal").style.display = "block";
+      createConfetti(); // Launch a one-off confetti burst
+      // Start the floating hearts and balloons while the modal is open
+      heartsInterval = setInterval(createHeart, 500);
+      balloonsInterval = setInterval(createBalloon, 2000);
+      // Start the typewriter effect
+      typeWriter();
+      // Play the surprise audio when the note is opened
+      document.getElementById("surpriseAudio").play();
+    }
+
+    function closeLoveNote() {
+      document.getElementById("loveModal").style.display = "none";
+      // Clear the intervals and timeout to stop animations and typewriter effect
+      clearInterval(heartsInterval);
+      clearInterval(balloonsInterval);
+      clearTimeout(typingTimer);
+      document.getElementById("loveNoteText").innerHTML = "";
+      typingIndex = 0;
+    }
+
+    // Close the modal if clicking outside the modal content
+    window.onclick = function(event) {
+      const modal = document.getElementById("loveModal");
+      if (event.target == modal) {
+        closeLoveNote();
+      }
+    }
+
+    // Audio Control: Separate Controls for Two Audio Streams
+    const audio1 = document.getElementById("song1");
+    const audio2 = document.getElementById("song2");
+
+    document.getElementById("audio1Control").addEventListener("click", function() {
+      if (audio1.paused) {
+        audio1.play();
+        this.textContent = "Pause 🎶";
+      } else {
+        audio1.pause();
+        this.textContent = "Play🎶";
+      }
+    });
+
+    document.getElementById("audio2Control").addEventListener("click", function() {
+      if (audio2.paused) {
+        audio2.play();
+        this.textContent = "Pause🎶";
+      } else {
+        audio2.pause();
+        this.textContent = "Play🎶";
+      }
+    });
+
+    // Volume Controls for the Audio Elements
+    document.getElementById("volume1").addEventListener("input", function() {
+      audio1.volume = this.value;
+    });
+
+    document.getElementById("volume2").addEventListener("input", function() {
+      audio2.volume = this.value;
+    });
+  </script>
+</body>
+</html>
